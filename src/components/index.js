@@ -1,1 +1,2 @@
-export { Controls } from './Controls';
+export { ConnectedControls } from './Controls';
+export { ConnectedPreview } from './Preview';
