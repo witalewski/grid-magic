@@ -62,7 +62,7 @@ Preview.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  imageData: state.image,
+  imageData: state.image.imageData,
 });
 
 export const ConnectedPreview = connect(mapStateToProps)(Preview);
