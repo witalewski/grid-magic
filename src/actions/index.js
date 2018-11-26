@@ -1,6 +1,6 @@
-export const ADD_IMAGE = 'ADD_IMAGE';
+export const SET_IMAGE = 'SET_IMAGE';
 
 export const addImage = image => ({
-  type: ADD_IMAGE,
+  type: SET_IMAGE,
   image,
 });

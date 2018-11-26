@@ -1,12 +1,9 @@
-import { ADD_IMAGE } from '../actions';
+import { SET_IMAGE } from '../actions';
 
-export const image = (state = {}, action) => {
+export const image = (state = '', action) => {
   switch (action.type) {
-    case ADD_IMAGE:
-      return {
-        ...state,
-        image: action.image,
-      };
+    case SET_IMAGE:
+      return action.image;
     default:
       return state;
   }

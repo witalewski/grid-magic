@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { string } from 'prop-types';
 import { connect } from 'react-redux';
 
-export const Preview = ({ image }) => {
+export const Preview = ({ imageData }) => {
   const canvas = useRef(null);
 
   const tileSize = 1080 / 4;
@@ -36,26 +36,26 @@ export const Preview = ({ image }) => {
   };
 
   useEffect(() => {
-    if (image) {
+    if (imageData) {
       const img = new Image();
       img.onload = onImageLoad;
-      img.src = image;
+      img.src = imageData;
     }
   });
 
-  return image && <canvas ref={canvas} alt="Preview" width={width} height={height} />;
+  return imageData && <canvas ref={canvas} alt="Preview" width={width} height={height} />;
 };
 
 Preview.propTypes = {
-  image: string,
+  imageData: string,
 };
 
 Preview.defaultProps = {
-  image: '',
+  imageData: '',
 };
 
 const mapStateToProps = state => ({
-  image: state.image.image,
+  imageData: state.image,
 });
 
 export const ConnectedPreview = connect(mapStateToProps)(Preview);
