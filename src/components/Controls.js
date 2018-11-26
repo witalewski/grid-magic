@@ -9,7 +9,6 @@ export const Controls = ({ addImageData }) => {
 
     fileReader.onload = (e) => {
       const dataURI = e.target.result;
-      console.log(dataURI);
       addImageData(dataURI);
     };
 
