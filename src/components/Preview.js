@@ -40,10 +40,17 @@ export const Preview = ({ imageData }) => {
       const img = new Image();
       img.onload = onImageLoad;
       img.src = imageData;
+    } else {
+      const ctx = canvas.current.getContext('2d');
+      ctx.fillStyle = 'grey';
+      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = 'white';
+      ctx.fillRect(tileSize, 0, 1, tileSize);
+      ctx.fillRect(tileSize * 2, 0, 1, tileSize);
     }
   });
 
-  return imageData && <canvas ref={canvas} alt="Preview" width={width} height={height} />;
+  return <canvas ref={canvas} alt="Preview" width={width} height={height} />;
 };
 
 Preview.propTypes = {
