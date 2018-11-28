@@ -1,8 +1,10 @@
-# mobx-quickstart
+# grid-magic
 
-[![Build Status](https://travis-ci.org/witalewski/mobx-quickstart.svg?branch=master)](https://travis-ci.org/witalewski/mobx-quickstart)
+[![Build Status](https://travis-ci.org/witalewski/grid-magic.svg?branch=master)](https://travis-ci.org/witalewski/grid-magic)
 
-🥘 A minimal boilerplate for developing applications with React and Mobx, created with [Create React App](https://github.com/facebook/create-react-app) (ejected).
+🧙🏻‍ A tool for creating awesome grids for Instagram, work in progress.
+
+Created with [mobx-quickstart](https://github.com/witalewski/mobx-quickstart).
 
 ## Available Scripts
 
