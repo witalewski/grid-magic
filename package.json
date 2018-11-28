@@ -130,6 +130,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.6",
-    "@babel/plugin-transform-react-jsx-source": "^7.0.0"
+    "@babel/plugin-transform-react-jsx-source": "^7.0.0",
+    "canvas": "^2.1.0"
   }
 }
