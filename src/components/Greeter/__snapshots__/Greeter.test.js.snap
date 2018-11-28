@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Greeter displays greeting 1`] = `
+<ForwardRef(render)>
+  <h1>
+    Hello, Kris
+  </h1>
+  <div>
+    Your name:
+     
+    <input
+      onChange={[Function]}
+      type="text"
+      value="Kris"
+    />
+  </div>
+</ForwardRef(render)>
+`;
