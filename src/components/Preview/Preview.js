@@ -18,7 +18,7 @@ class Preview extends Component {
     return canvas;
   }
 
-  previewCanvas = createRef();
+  previewImage = createRef();
   tileSize = 1080;
   width = this.tileSize * 3 + 2;
   height = this.tileSize;
@@ -26,7 +26,13 @@ class Preview extends Component {
   exportCanvas = this.createCanvas(this.tileSize, this.tileSize);
 
   onImageLoad = ({ target }) => {
-    const { backgroundCanvas, previewCanvas, width, height, tileSize } = this;
+    const {
+      backgroundCanvas,
+      previewImage,
+      width,
+      height,
+      tileSize,
+    } = this;
 
     const bgCtx = backgroundCanvas.getContext('2d');
     bgCtx.fillStyle = 'white';
@@ -49,28 +55,21 @@ class Preview extends Component {
       yOffset = 0;
     }
     bgCtx.drawImage(target, xOffset, yOffset, targetWidth, targetHeight);
-    // bgCtx.fillRect(tileSize, 0, 1, tileSize);
-    // bgCtx.fillRect(tileSize * 2 + 1, 0, 1, tileSize);
+    bgCtx.fillRect(tileSize, 0, 1, tileSize);
+    bgCtx.fillRect(tileSize * 2 + 1, 0, 1, tileSize);
 
-    const pvCtx = previewCanvas.current.getContext('2d');
-    pvCtx.drawImage(
-      this.backgroundCanvas,
-      0,
-      0,
-      this.width,
-      this.height,
-      0,
-      0,
-      this.width / 4,
-      this.height / 4
-    );
-    pvCtx.fillStyle = 'white';
-    pvCtx.fillRect(tileSize / 4, 0, 1, tileSize / 4);
-    pvCtx.fillRect(tileSize / 2 + 1, 0, 1, tileSize / 4);
+    previewImage.current.src = backgroundCanvas.toDataURL('image/png');
   };
 
   displayImage() {
-    const { onImageLoad, previewCanvas, width, height, tileSize } = this;
+    const {
+      onImageLoad,
+      backgroundCanvas,
+      previewImage,
+      width,
+      height,
+      tileSize,
+    } = this;
     const { inputImageData } = this.props;
 
     if (inputImageData) {
@@ -78,12 +77,13 @@ class Preview extends Component {
       img.onload = onImageLoad;
       img.src = inputImageData;
     } else {
-      const ctx = previewCanvas.current.getContext('2d');
+      const ctx = backgroundCanvas.getContext('2d');
       ctx.fillStyle = '#3c3836';
-      ctx.fillRect(0, 0, width / 4, height / 4);
+      ctx.fillRect(0, 0, width, height);
       ctx.fillStyle = 'white';
-      ctx.fillRect(tileSize / 4, 0, 1, tileSize / 4);
-      ctx.fillRect(tileSize / 2 + 1, 0, 1, tileSize / 4);
+      ctx.fillRect(tileSize + 1, 0, 1, tileSize);
+      ctx.fillRect(tileSize * 2 + 2, 0, 1, tileSize);
+      previewImage.current.src = backgroundCanvas.toDataURL('image/png');
     }
   }
 
@@ -124,15 +124,10 @@ class Preview extends Component {
   }
 
   render() {
-    const { previewCanvas, width, height } = this;
+    const { previewImage } = this;
     return (
       <div>
-        <canvas
-          ref={previewCanvas}
-          alt="Preview"
-          width={width / 4}
-          height={height / 4}
-        />
+        <img alt="Preview" ref={previewImage} style={{width: '800px'}} />
       </div>
     );
   }
