@@ -127,7 +127,7 @@ class Preview extends Component {
     const { previewImage } = this;
     return (
       <div>
-        <img alt="Preview" ref={previewImage} style={{width: '800px'}} />
+        <img alt="Preview" ref={previewImage} style={{maxWidth: '100%'}} />
       </div>
     );
   }
