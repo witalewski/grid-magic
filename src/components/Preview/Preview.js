@@ -1,28 +1,29 @@
 import React, { Component, createRef } from 'react';
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
 class Preview extends Component {
   static propTypes = {
     inputImageData: string,
-    previewImageData: string,
+    setDownloadImages: func.isRequired,
   };
   static defaultProps = {
     inputImageData: '',
-    previewImageData: '',
   };
 
-  canvas = createRef();
-  tileSize = 1080 / 4;
+  backgroundCanvas = createRef();
+  previewCanvas = createRef();
+  exportCanvas = createRef();
+  tileSize = 1080;
   width = this.tileSize * 3 + 2;
   height = this.tileSize;
 
   onImageLoad = ({ target }) => {
-    const { canvas, width, height, tileSize } = this;
+    const { backgroundCanvas, previewCanvas, width, height, tileSize } = this;
 
-    const ctx = canvas.current.getContext('2d');
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, width, height);
+    const bgCtx = backgroundCanvas.current.getContext('2d');
+    bgCtx.fillStyle = 'white';
+    bgCtx.fillRect(0, 0, width, height);
     let targetWidth;
     let targetHeight;
     let xOffset;
@@ -40,13 +41,29 @@ class Preview extends Component {
       xOffset = (width - targetWidth) / 2;
       yOffset = 0;
     }
-    ctx.drawImage(target, xOffset, yOffset, targetWidth, targetHeight);
-    ctx.fillRect(tileSize, 0, 1, tileSize);
-    ctx.fillRect(tileSize * 2, 0, 1, tileSize);
+    bgCtx.drawImage(target, xOffset, yOffset, targetWidth, targetHeight);
+    // bgCtx.fillRect(tileSize, 0, 1, tileSize);
+    // bgCtx.fillRect(tileSize * 2 + 1, 0, 1, tileSize);
+
+    const pvCtx = previewCanvas.current.getContext('2d');
+    pvCtx.drawImage(
+      this.backgroundCanvas.current,
+      0,
+      0,
+      this.width,
+      this.height,
+      0,
+      0,
+      this.width / 4,
+      this.height / 4
+    );
+    pvCtx.fillStyle = 'white';
+    pvCtx.fillRect(tileSize / 4, 0, 1, tileSize / 4);
+    pvCtx.fillRect(tileSize / 2 + 1, 0, 1, tileSize / 4);
   };
 
   displayImage() {
-    const { onImageLoad, canvas, width, height, tileSize } = this;
+    const { onImageLoad, previewCanvas, width, height, tileSize } = this;
     const { inputImageData } = this.props;
 
     if (inputImageData) {
@@ -54,26 +71,83 @@ class Preview extends Component {
       img.onload = onImageLoad;
       img.src = inputImageData;
     } else {
-      const ctx = canvas.current.getContext('2d');
+      const ctx = previewCanvas.current.getContext('2d');
       ctx.fillStyle = '#3c3836';
-      ctx.fillRect(0, 0, width, height);
+      ctx.fillRect(0, 0, width / 4, height / 4);
       ctx.fillStyle = 'white';
-      ctx.fillRect(tileSize, 0, 1, tileSize);
-      ctx.fillRect(tileSize * 2, 0, 1, tileSize);
+      ctx.fillRect(tileSize / 4, 0, 1, tileSize / 4);
+      ctx.fillRect(tileSize / 2 + 1, 0, 1, tileSize / 4);
     }
   }
 
+  saveBase64AsFile(base64, fileName) {
+    const link = document.createElement('a');
+    link.setAttribute('href', base64);
+    link.setAttribute('download', fileName);
+    link.click();
+  }
+
+  downloadImages = () => {
+    const ctx = this.exportCanvas.current.getContext('2d');
+    [0, this.tileSize + 1, 2 * this.tileSize + 2].forEach((x, i) => {
+      ctx.drawImage(
+        this.backgroundCanvas.current,
+        x,
+        0,
+        this.tileSize,
+        this.tileSize,
+        0,
+        0,
+        this.tileSize,
+        this.tileSize
+      );
+
+      let data = this.exportCanvas.current.toDataURL('image/png');
+      console.log(data);
+      this.saveBase64AsFile(data, `export-${i}.png`);
+    });
+  };
+
   componentDidMount() {
     this.displayImage();
+    this.props.setDownloadImages(this.downloadImages);
   }
   componentDidUpdate() {
     this.displayImage();
   }
 
   render() {
-    const { canvas, width, height } = this;
+    const {
+      backgroundCanvas,
+      previewCanvas,
+      exportCanvas,
+      width,
+      height,
+      tileSize,
+    } = this;
     return (
-      <canvas ref={this.canvas} alt="Preview" width={width} height={height} />
+      <div>
+        <canvas
+          ref={backgroundCanvas}
+          alt="Background"
+          width={width}
+          height={height}
+          style={{ display: 'none' }}
+        />
+        <canvas
+          ref={previewCanvas}
+          alt="Preview"
+          width={width / 4}
+          height={height / 4}
+        />
+        <canvas
+          ref={exportCanvas}
+          alt="Export"
+          width={tileSize}
+          height={tileSize}
+          style={{ display: 'none' }}
+        />
+      </div>
     );
   }
 }
@@ -81,5 +155,5 @@ class Preview extends Component {
 export { Preview };
 export default inject(({ appState }) => ({
   inputImageData: appState.inputImageData,
-  previewImageData: appState.previewImageData,
+  setDownloadImages: appState.setDownloadImages,
 }))(observer(Preview));

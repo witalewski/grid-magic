@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Provider } from 'mobx-react';
-import { AppStyled } from "./AppStyled";
+import { AppStyled } from './AppStyled';
 import { AppState } from './AppState';
 import { Preview } from './components/Preview';
 import { Upload } from './components/Upload';
+import { Download } from './components/Download';
 
 class App extends Component {
   constructor() {
@@ -17,7 +18,10 @@ class App extends Component {
         <Provider appState={this.appState}>
           <Fragment>
             <Preview />
-            <Upload />
+            <div>
+              <Upload />
+              <Download />
+            </div>
           </Fragment>
         </Provider>
       </AppStyled>
