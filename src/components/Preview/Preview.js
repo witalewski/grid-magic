@@ -22,19 +22,19 @@ class Preview extends Component {
   tileSize = 1080;
   width = this.tileSize * 3 + 2;
   height = this.tileSize;
-  backgroundCanvas = this.createCanvas(this.width, this.height);
+  previewCanvas = this.createCanvas(this.width, this.height);
   exportCanvas = this.createCanvas(this.tileSize, this.tileSize);
 
   onImageLoad = ({ target }) => {
     const {
-      backgroundCanvas,
+      previewCanvas,
       previewImage,
       width,
       height,
       tileSize,
     } = this;
 
-    const bgCtx = backgroundCanvas.getContext('2d');
+    const bgCtx = previewCanvas.getContext('2d');
     bgCtx.fillStyle = 'white';
     bgCtx.fillRect(0, 0, width, height);
     let targetWidth;
@@ -58,13 +58,13 @@ class Preview extends Component {
     bgCtx.fillRect(tileSize, 0, 1, tileSize);
     bgCtx.fillRect(tileSize * 2 + 1, 0, 1, tileSize);
 
-    previewImage.current.src = backgroundCanvas.toDataURL('image/png');
+    previewImage.current.src = previewCanvas.toDataURL('image/png');
   };
 
   displayImage() {
     const {
       onImageLoad,
-      backgroundCanvas,
+      previewCanvas,
       previewImage,
       width,
       height,
@@ -77,13 +77,13 @@ class Preview extends Component {
       img.onload = onImageLoad;
       img.src = inputImageData;
     } else {
-      const ctx = backgroundCanvas.getContext('2d');
+      const ctx = previewCanvas.getContext('2d');
       ctx.fillStyle = '#3c3836';
       ctx.fillRect(0, 0, width, height);
       ctx.fillStyle = 'white';
       ctx.fillRect(tileSize + 1, 0, 1, tileSize);
       ctx.fillRect(tileSize * 2 + 2, 0, 1, tileSize);
-      previewImage.current.src = backgroundCanvas.toDataURL('image/png');
+      previewImage.current.src = previewCanvas.toDataURL('image/png');
     }
   }
 
@@ -98,7 +98,7 @@ class Preview extends Component {
     const ctx = this.exportCanvas.getContext('2d');
     [0, this.tileSize + 1, 2 * this.tileSize + 2].forEach((x, i) => {
       ctx.drawImage(
-        this.backgroundCanvas,
+        this.previewCanvas,
         x,
         0,
         this.tileSize,
