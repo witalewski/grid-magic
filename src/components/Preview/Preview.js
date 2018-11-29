@@ -11,17 +11,24 @@ class Preview extends Component {
     inputImageData: '',
   };
 
-  backgroundCanvas = createRef();
+  createCanvas(width, height) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
+  }
+
   previewCanvas = createRef();
-  exportCanvas = createRef();
   tileSize = 1080;
   width = this.tileSize * 3 + 2;
   height = this.tileSize;
+  backgroundCanvas = this.createCanvas(this.width, this.height);
+  exportCanvas = this.createCanvas(this.tileSize, this.tileSize);
 
   onImageLoad = ({ target }) => {
     const { backgroundCanvas, previewCanvas, width, height, tileSize } = this;
 
-    const bgCtx = backgroundCanvas.current.getContext('2d');
+    const bgCtx = backgroundCanvas.getContext('2d');
     bgCtx.fillStyle = 'white';
     bgCtx.fillRect(0, 0, width, height);
     let targetWidth;
@@ -47,7 +54,7 @@ class Preview extends Component {
 
     const pvCtx = previewCanvas.current.getContext('2d');
     pvCtx.drawImage(
-      this.backgroundCanvas.current,
+      this.backgroundCanvas,
       0,
       0,
       this.width,
@@ -88,10 +95,10 @@ class Preview extends Component {
   }
 
   downloadImages = () => {
-    const ctx = this.exportCanvas.current.getContext('2d');
+    const ctx = this.exportCanvas.getContext('2d');
     [0, this.tileSize + 1, 2 * this.tileSize + 2].forEach((x, i) => {
       ctx.drawImage(
-        this.backgroundCanvas.current,
+        this.backgroundCanvas,
         x,
         0,
         this.tileSize,
@@ -102,7 +109,7 @@ class Preview extends Component {
         this.tileSize
       );
 
-      let data = this.exportCanvas.current.toDataURL('image/png');
+      let data = this.exportCanvas.toDataURL('image/png');
       console.log(data);
       this.saveBase64AsFile(data, `export-${i}.png`);
     });
@@ -117,35 +124,14 @@ class Preview extends Component {
   }
 
   render() {
-    const {
-      backgroundCanvas,
-      previewCanvas,
-      exportCanvas,
-      width,
-      height,
-      tileSize,
-    } = this;
+    const { previewCanvas, width, height } = this;
     return (
       <div>
-        <canvas
-          ref={backgroundCanvas}
-          alt="Background"
-          width={width}
-          height={height}
-          style={{ display: 'none' }}
-        />
         <canvas
           ref={previewCanvas}
           alt="Preview"
           width={width / 4}
           height={height / 4}
-        />
-        <canvas
-          ref={exportCanvas}
-          alt="Export"
-          width={tileSize}
-          height={tileSize}
-          style={{ display: 'none' }}
         />
       </div>
     );
