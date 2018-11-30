@@ -4,25 +4,16 @@ import { observer, inject } from 'mobx-react';
 
 class Upload extends Component {
   static propTypes = {
-    setInputImageData: func.isRequired,
-  };
-  onChange = event => {
-    const fileReader = new FileReader();
-
-    fileReader.onload = e => {
-      const dataURI = e.target.result;
-      this.props.setInputImageData(dataURI);
-    };
-
-    fileReader.readAsDataURL(event.target.files[0]);
+    addFile: func.isRequired,
   };
 
   render() {
-    return <input type="file" onChange={this.onChange} />;
+    const { addFile } = this.props;
+    return <input type="file" onChange={event => addFile(event.target.files[0])} />;
   }
 }
 
 export { Upload };
 export default inject(({ appState }) => ({
-  setInputImageData: appState.setInputImageData,
+  addFile: appState.addFile,
 }))(observer(Upload));

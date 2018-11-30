@@ -19,17 +19,20 @@ class AppState {
   @action setPreviewCanvas = previewCanvas => {
     this.previewCanvas = previewCanvas;
   };
-  @action setInputImageData = inputImageData => {
-    this.inputImageData = inputImageData;
+  @action addFile = file => {
     this.imageProcessor
-      .getCanvasFromImageData(
-        inputImageData,
+      .getCanvasFromFile(
+        file,
         this.width,
         this.height,
         this.tileSize
       )
       .then(canvas => this.setPreviewCanvas(canvas));
   };
+
+  @computed get downloadImages() {
+    return () => this.imageProcessor.downloadImages(this.previewCanvas,this.tileSize);
+  }
 }
 
 export { AppState };
