@@ -93,7 +93,7 @@ export class ImageProcessor {
 
       const data = exportCanvas.toDataURL('image/png');
       console.log(data);
-      this.saveBase64AsFile(data, `export-${i}.png`);
+      this.saveBase64AsFile(data, `export-${i+1}.png`);
     });
   };
 }
