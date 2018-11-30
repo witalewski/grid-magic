@@ -78,7 +78,7 @@ export class ImageProcessor {
   downloadImages = (sourceCanvas, tileSize, gapSize) => {
     const exportCanvas = this.createCanvas(tileSize, tileSize);
     const exportContext = exportCanvas.getContext('2d');
-    [0, tileSize + gapSize * 2, tileSize * 2 + gapSize * 3].forEach((x, i) => {
+    [tileSize * 2 + gapSize * 3, tileSize + gapSize * 2, 0].forEach((x, i) => {
       exportContext.drawImage(
         sourceCanvas,
         x,
@@ -93,7 +93,7 @@ export class ImageProcessor {
 
       const data = exportCanvas.toDataURL('image/png');
       console.log(data);
-      this.saveBase64AsFile(data, `export-${i+1}.png`);
+      this.saveBase64AsFile(data, `export-${3-i}.png`);
     });
   };
 }
