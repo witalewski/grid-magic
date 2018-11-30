@@ -16,13 +16,13 @@ export const AppStyled = styled.div`
   font-family: 'Lato', sans-serif;
 
   h1 {
-    margin: 36px 0;
+    font-weight: normal;
   }
 
   .preview-image {
     width: calc(100% - 72px);
 
-    margin: 0;
+    margin: 36px 0;
     padding: 0;
   }
 `;
