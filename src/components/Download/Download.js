@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import { func } from 'prop-types';
+import { object, number } from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
 class Download extends Component {
   static propTypes = {
-    downloadImages: func,
-  };
-
-  static defaultProps = {
-    downloadImages: null,
+    imageProcessor: object.isRequired,
+    previewCanvas: object.isRequired,
+    tileSize: number.isRequired,
   };
 
   render() {
     return (
-      this.props.downloadImages && (
-        <button onClick={this.props.downloadImages}>Download images</button>
-      )
-    );
+        <button onClick={() => this.props.imageProcessor.downloadImages(this.props.previewCanvas,this.props.tileSize)}>Download images</button>
+      );
   }
 }
 
 export { Download };
 export default inject(({ appState }) => ({
-  downloadImages: appState.downloadImages,
+  imageProcessor: appState.imageProcessor,
+  previewCanvas: appState.previewCanvas,
+  tileSize: appState.tileSize,
 }))(observer(Download));
