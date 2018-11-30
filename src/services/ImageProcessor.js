@@ -11,7 +11,7 @@ export class ImageProcessor {
   getPlaceholderCanvas = (width, height, tileSize, gapSize) => {
     const canvas = this.createCanvas(width, height);
     const context = canvas.getContext('2d');
-    context.fillStyle = '#3c3836';
+    context.fillStyle = 'lightgray';
     context.fillRect(0, 0, width, height);
     context.fillStyle = 'white';
     context.fillRect(tileSize + gapSize, 0, gapSize, tileSize);
