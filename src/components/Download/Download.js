@@ -9,8 +9,10 @@ class Download extends Component {
 
   render() {
     return (
-        <button onClick={this.props.downloadImages}>Download images</button>
-      );
+      <button className="download-button" onClick={this.props.downloadImages}>
+        Download images
+      </button>
+    );
   }
 }
 

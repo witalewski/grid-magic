@@ -1,14 +1,28 @@
 import styled from '@emotion/styled';
 
 export const AppStyled = styled.div`
-  min-width: 100vw;
-  min-height: 100vh;
+  @import url('https://fonts.googleapis.com/css?family=Lato');
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
+  min-width: 100vw;
+  min-height: 100vh;
+
+  margin: 0;
+
+  font-family: 'Lato', sans-serif;
+
+  h1 {
+    margin: 36px 0;
+  }
+
   .preview-image {
-    max-width: 100%;
+    width: calc(100% - 72px);
+
+    margin: 0;
+    padding: 0;
   }
 `;

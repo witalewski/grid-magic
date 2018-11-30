@@ -9,7 +9,13 @@ class Upload extends Component {
 
   render() {
     const { addFile } = this.props;
-    return <input type="file" onChange={event => addFile(event.target.files[0])} />;
+    return (
+      <input
+        className="file-upload"
+        type="file"
+        onChange={event => addFile(event.target.files[0])}
+      />
+    );
   }
 }
 

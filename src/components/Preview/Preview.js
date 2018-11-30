@@ -11,7 +11,6 @@ class Preview extends Component {
   };
   render() {
     return (
-      <div>
         <img
           alt="Preview"
           className="preview-image"
@@ -20,7 +19,6 @@ class Preview extends Component {
             this.props.previewCanvas.toDataURL('image/png')
           }
         />
-      </div>
     );
   }
 }

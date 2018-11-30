@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
 import { AppStyled } from './AppStyled';
 import { ImageProcessor } from './services/ImageProcessor';
@@ -13,17 +13,21 @@ const appState = new AppState(imageProcessor);
 class App extends Component {
   render() {
     return (
-      <AppStyled className="App">
-        <Provider appState={appState}>
-          <Fragment>
-            <Preview />
-            <div>
-              <Upload />
-              <Download />
-            </div>
-          </Fragment>
-        </Provider>
-      </AppStyled>
+      <Provider appState={appState}>
+        <AppStyled className="App">
+          <h1>
+            <span role="img" aria-label="Wizard emoji">
+              🧙🏻‍♀️
+            </span>{' '}
+            Layout your image on 3x1 grid for Instagram
+          </h1>
+          <Preview />
+          <div>
+            <Upload />
+            <Download />
+          </div>
+        </AppStyled>
+      </Provider>
     );
   }
 }
