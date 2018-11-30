@@ -6,10 +6,6 @@
 
 Created with [mobx-quickstart](https://github.com/witalewski/mobx-quickstart).
 
-## Preview
-
-<iframe src="https://witalewski.github.io/grid-magic/"></iframe>
-
 ## Available Scripts
 
 In the project directory, you can run:
