@@ -26,13 +26,7 @@ class Preview extends Component {
   exportCanvas = this.createCanvas(this.tileSize, this.tileSize);
 
   onImageLoad = ({ target }) => {
-    const {
-      previewCanvas,
-      previewImage,
-      width,
-      height,
-      tileSize,
-    } = this;
+    const { previewCanvas, previewImage, width, height, tileSize } = this;
 
     const bgCtx = previewCanvas.getContext('2d');
     bgCtx.fillStyle = 'white';
@@ -127,7 +121,7 @@ class Preview extends Component {
     const { previewImage } = this;
     return (
       <div>
-        <img alt="Preview" ref={previewImage} style={{maxWidth: '100%'}} />
+        <img alt="Preview" ref={previewImage} style={{ maxWidth: '100%' }} />
       </div>
     );
   }
