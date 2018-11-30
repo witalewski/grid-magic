@@ -1,8 +1,9 @@
 import { observable, action, computed } from 'mobx';
-import { ImageProcessor } from './services/ImageProcessor';
 
 class AppState {
-  imageProcessor = new ImageProcessor();
+  constructor(imageProcessor) {
+    this.imageProcessor = imageProcessor;
+  }
   @observable tileSize = 1080;
   @computed get width() {
     return this.tileSize * 3 + 2;
