@@ -21,6 +21,7 @@ export const AppStyled = styled.div`
 
   .preview-image {
     width: calc(100% - 72px);
+    max-width: 960px;
 
     margin: 36px 0;
     padding: 0;
