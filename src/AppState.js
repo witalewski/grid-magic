@@ -5,8 +5,9 @@ class AppState {
     this.imageProcessor = imageProcessor;
   }
   @observable tileSize = 1080;
+  @observable gapSize = 10;
   @computed get width() {
-    return this.tileSize * 3 + 2;
+    return this.tileSize * 3 + this.gapSize * 2;
   }
   @computed get height() {
     return this.tileSize;
@@ -15,7 +16,8 @@ class AppState {
   @observable previewCanvas = this.imageProcessor.getPlaceholderCanvas(
     this.width,
     this.height,
-    this.tileSize
+    this.tileSize,
+    this.gapSize
   );
   @action setPreviewCanvas = previewCanvas => {
     this.previewCanvas = previewCanvas;
@@ -26,13 +28,19 @@ class AppState {
         file,
         this.width,
         this.height,
-        this.tileSize
+        this.tileSize,
+        this.gapSize
       )
       .then(canvas => this.setPreviewCanvas(canvas));
   };
 
   @computed get downloadImages() {
-    return () => this.imageProcessor.downloadImages(this.previewCanvas,this.tileSize);
+    return () =>
+      this.imageProcessor.downloadImages(
+        this.previewCanvas,
+        this.tileSize,
+        this.gapSize
+      );
   }
 }
 

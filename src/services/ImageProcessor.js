@@ -8,18 +8,18 @@ export class ImageProcessor {
     return canvas;
   };
 
-  getPlaceholderCanvas = (width, height, tileSize) => {
+  getPlaceholderCanvas = (width, height, tileSize, gapSize) => {
     const canvas = this.createCanvas(width, height);
     const context = canvas.getContext('2d');
     context.fillStyle = '#3c3836';
     context.fillRect(0, 0, width, height);
     context.fillStyle = 'white';
-    context.fillRect(tileSize + 1, 0, 1, tileSize);
-    context.fillRect(tileSize * 2 + 2, 0, 1, tileSize);
+    context.fillRect(tileSize + gapSize, 0, gapSize, tileSize);
+    context.fillRect(tileSize * 2 + gapSize * 2, 0, gapSize, tileSize);
     return canvas;
   };
 
-  getCanvasFromFile = async (file, width, height, tileSize) =>
+  getCanvasFromFile = async (file, width, height, tileSize, gapSize) =>
     new Promise(resolve => {
       const fileReader = new FileReader();
 
@@ -56,8 +56,8 @@ export class ImageProcessor {
             targetWidth,
             targetHeight
           );
-          context.fillRect(tileSize, 0, 1, tileSize);
-          context.fillRect(tileSize * 2 + 1, 0, 1, tileSize);
+          context.fillRect(tileSize + gapSize, 0, gapSize, tileSize);
+          context.fillRect(tileSize * 2 + gapSize * 2, 0, gapSize, tileSize);
 
           resolve(canvas);
         };
@@ -75,10 +75,10 @@ export class ImageProcessor {
     link.click();
   };
 
-  downloadImages = (sourceCanvas, tileSize) => {
+  downloadImages = (sourceCanvas, tileSize, gapSize) => {
     const exportCanvas = this.createCanvas(tileSize, tileSize);
     const exportContext = exportCanvas.getContext('2d');
-    [0, tileSize + 1, 2 * tileSize + 2].forEach((x, i) => {
+    [0, tileSize + gapSize * 2, tileSize * 2 + gapSize * 3].forEach((x, i) => {
       exportContext.drawImage(
         sourceCanvas,
         x,
