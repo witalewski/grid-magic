@@ -1,12 +1,12 @@
 import React from 'react';
-import { Greeter } from './Greeter';
+import { Upload } from './Upload';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-describe('Greeter', () => {
-  it('displays greeting', () => {
+describe('Upload', () => {
+  it('displays upload', () => {
     const renderer = new ShallowRenderer();
     renderer.render(
-      <Greeter name="Kris" greeting="Hello, Kris" setName={jest.fn()} />
+      <Upload addFile={jest.fn()} />
     );
     const result = renderer.getRenderOutput();
 

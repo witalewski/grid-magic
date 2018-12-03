@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preview displays preview 1`] = `
+<img
+  alt="Preview"
+  className="preview-image"
+  onDrop={[Function]}
+  src={null}
+/>
+`;

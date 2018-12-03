@@ -104,7 +104,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "^.+\\.(jpg|jpeg|gif|png|mp4|mkv|avi|webm|swf|wav|mid)$": "jest-static-stubs/$1"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -135,6 +136,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/plugin-transform-react-jsx-source": "^7.0.0",
-    "jest-canvas-mock": "^1.1.0"
+    "jest-canvas-mock": "^1.1.0",
+    "jest-static-stubs": "^0.0.1"
   }
 }

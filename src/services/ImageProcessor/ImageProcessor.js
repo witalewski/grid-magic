@@ -64,7 +64,6 @@ export class ImageProcessor {
 
         img.src = imageData;
       };
-
       fileReader.readAsDataURL(file);
     });
 

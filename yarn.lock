@@ -5541,6 +5541,11 @@ jest-snapshot@^23.6.0:
     pretty-format "^23.6.0"
     semver "^5.5.0"
 
+jest-static-stubs@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/jest-static-stubs/-/jest-static-stubs-0.0.1.tgz#aff26f161ac32593f9944ac3bc3446b688acab83"
+  integrity sha1-r/JvFhrDJZP5lErDvDRGtoisq4M=
+
 jest-util@^23.4.0:
   version "23.4.0"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-23.4.0.tgz#4d063cb927baf0a23831ff61bec2cbbf49793561"
