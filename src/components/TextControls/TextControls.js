@@ -29,7 +29,7 @@ export class TextControls extends Component {
   render() {
     return (
       <div>
-        <input
+        Text: <input
           type="text"
           value={this.state.overlayText}
           onChange={this.onChange}
