@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 import { AppStyled } from './AppStyled';
 import { ImageProcessor } from './services';
 import { AppState } from './AppState';
-import { Preview, Upload, Download } from './components';
+import { Preview, Upload, Download, TextControls } from './components';
 
 const imageProcessor = new ImageProcessor();
 const appState = new AppState(imageProcessor);
@@ -24,6 +25,8 @@ class App extends Component {
             <Upload />
             <Download />
           </div>
+          <TextControls />
+          <DevTools />
         </AppStyled>
       </Provider>
     );

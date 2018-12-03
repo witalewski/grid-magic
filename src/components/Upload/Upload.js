@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-class Upload extends Component {
+export class Upload extends Component {
   static propTypes = {
     addFile: func.isRequired,
   };
@@ -19,7 +19,6 @@ class Upload extends Component {
   }
 }
 
-export { Upload };
 export default inject(({ appState }) => ({
   addFile: appState.addFile,
 }))(observer(Upload));

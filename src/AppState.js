@@ -8,6 +8,7 @@ export class AppState {
   }
   @observable tileSize = TILE_SIZE;
   @observable gapSize = GAP_SIZE;
+  @observable overlayText = '';
   @computed get width() {
     return this.tileSize * 3 + this.gapSize * 2;
   }
@@ -15,15 +16,21 @@ export class AppState {
     return this.tileSize;
   }
   @observable inputImageData = '';
-  @observable previewCanvas = this.imageProcessor.getPlaceholderCanvas(
+  @observable baseCanvas = this.imageProcessor.getPlaceholderCanvas(
     this.width,
     this.height,
     this.tileSize,
     this.gapSize
   );
-  @action setPreviewCanvas = previewCanvas => {
-    this.previewCanvas = previewCanvas;
+  @action setBaseCanvas = baseCanvas => {
+    this.baseCanvas = baseCanvas;
   };
+  @computed get previewCanvas() {
+    return this.imageProcessor.addTextToCanvas(
+      this.baseCanvas,
+      this.overlayText
+    );
+  }
   @action addFile = file => {
     this.imageProcessor
       .getCanvasFromFile(
@@ -33,7 +40,11 @@ export class AppState {
         this.tileSize,
         this.gapSize
       )
-      .then(canvas => this.setPreviewCanvas(canvas));
+      .then(canvas => this.setBaseCanvas(canvas));
+  };
+
+  @action setOverlayText = overlayText => {
+    this.overlayText = overlayText;
   };
 
   @computed get downloadImages() {

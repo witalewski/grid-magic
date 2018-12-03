@@ -28,6 +28,7 @@ export class ImageProcessor {
         const img = new Image();
 
         img.onload = ({ target }) => {
+          const img = target;
           const canvas = this.createCanvas(width, height);
           const context = canvas.getContext('2d');
           context.fillStyle = 'white';
@@ -36,7 +37,7 @@ export class ImageProcessor {
           let targetHeight;
           let xOffset;
           let yOffset;
-          const imgProportions = target.width / target.height;
+          const imgProportions = img.width / img.height;
           const canvasProportions = width / height;
           if (imgProportions > canvasProportions) {
             targetWidth = width;
@@ -49,13 +50,7 @@ export class ImageProcessor {
             xOffset = (width - targetWidth) / 2;
             yOffset = 0;
           }
-          context.drawImage(
-            target,
-            xOffset,
-            yOffset,
-            targetWidth,
-            targetHeight
-          );
+          context.drawImage(img, xOffset, yOffset, targetWidth, targetHeight);
           context.fillRect(tileSize + gapSize, 0, gapSize, tileSize);
           context.fillRect(tileSize * 2 + gapSize * 2, 0, gapSize, tileSize);
 
@@ -66,6 +61,20 @@ export class ImageProcessor {
       };
       fileReader.readAsDataURL(file);
     });
+
+  addTextToCanvas = (
+    (canvas, text) => {
+      const { width, height } = canvas;
+      const newCanvas = this.createCanvas(width, height);
+      const context = newCanvas.getContext('2d');
+      context.drawImage(canvas, 0, 0, width, height);
+      context.fillStyle = 'white';
+      context.font = '600px Helvetica, Arial, sans';
+      context.textAlign = 'center';
+      context.fillText(text, width / 2, height / 2 + 220);
+      return newCanvas;
+    }
+  );
 
   saveBlobAsFile = (blob, fileName) => {
     let a = document.createElement('a');
