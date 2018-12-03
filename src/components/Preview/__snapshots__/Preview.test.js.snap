@@ -4,7 +4,6 @@ exports[`Preview displays preview 1`] = `
 <img
   alt="Preview"
   className="preview-image"
-  onDrop={[Function]}
   src={null}
 />
 `;

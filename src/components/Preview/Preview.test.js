@@ -8,7 +8,7 @@ describe('Preview', () => {
     const renderer = new ShallowRenderer();
     const imageProcessor = new ImageProcessor();
     renderer.render(
-      <Preview canvas={imageProcessor.getPlaceholderCanvas(100,100,100,0)} addFile={jest.fn()} />
+      <Preview canvas={imageProcessor.getPlaceholderCanvas(100, 100, 100, 0)} />
     );
     const result = renderer.getRenderOutput();
 
