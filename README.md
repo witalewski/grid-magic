@@ -1,6 +1,7 @@
 # grid-magic
 
 [![Build Status](https://travis-ci.org/witalewski/grid-magic.svg?branch=master)](https://travis-ci.org/witalewski/grid-magic)
+[![Coverage Status](https://coveralls.io/repos/github/witalewski/grid-magic/badge.svg?branch=master)](https://coveralls.io/github/witalewski/grid-magic?branch=master)
 
 🧙🏻‍ A tool for creating awesome grids for Instagram, work in progress.
 
