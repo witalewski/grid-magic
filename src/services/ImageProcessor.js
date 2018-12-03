@@ -61,24 +61,26 @@ export class ImageProcessor {
 
           resolve(canvas);
         };
-        
+
         img.src = imageData;
       };
 
       fileReader.readAsDataURL(file);
     });
 
-  saveBase64AsFile = (base64, fileName) => {
-    const link = document.createElement('a');
-    link.setAttribute('href', base64);
-    link.setAttribute('download', fileName);
-    link.click();
+  saveBlobAsFile = (blob, fileName) => {
+    let a = document.createElement('a');
+    a.setAttribute('download', fileName);
+    a.setAttribute('href', window.URL.createObjectURL(blob));
+    a.click();
   };
 
   downloadImages = (sourceCanvas, tileSize, gapSize) => {
-    const exportCanvas = this.createCanvas(tileSize, tileSize);
-    const exportContext = exportCanvas.getContext('2d');
-    [tileSize * 2 + gapSize * 3, tileSize + gapSize * 2, 0].forEach((x, i) => {
+    const imageBlobs = [];
+    let imagesLeftToProcess = 3;
+    [0, tileSize + gapSize * 2, tileSize * 2 + gapSize * 3].forEach((x, i) => {
+      const exportCanvas = this.createCanvas(tileSize, tileSize);
+      const exportContext = exportCanvas.getContext('2d');
       exportContext.drawImage(
         sourceCanvas,
         x,
@@ -90,10 +92,14 @@ export class ImageProcessor {
         tileSize,
         tileSize
       );
-
-      const data = exportCanvas.toDataURL('image/png');
-      console.log(data);
-      this.saveBase64AsFile(data, `export-${3-i}.png`);
+      exportCanvas.toBlob(blob => {
+        imageBlobs[2 - i] = blob; // reverse so that downloaded files sorted by time are in proper order
+        if (!--imagesLeftToProcess) {
+          imageBlobs.forEach((blob, i) => {
+            this.saveBlobAsFile(blob, `grid-image-${3 - i}.png`); //first download last image, then second, then first
+          });
+        }
+      });
     });
   };
 }
