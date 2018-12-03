@@ -1,11 +1,13 @@
 import { observable, action, computed } from 'mobx';
+export const TILE_SIZE = 1080;
+export const GAP_SIZE = 10;
 
-class AppState {
+export class AppState {
   constructor(imageProcessor) {
     this.imageProcessor = imageProcessor;
   }
-  @observable tileSize = 1080;
-  @observable gapSize = 10;
+  @observable tileSize = TILE_SIZE;
+  @observable gapSize = GAP_SIZE;
   @computed get width() {
     return this.tileSize * 3 + this.gapSize * 2;
   }
@@ -43,5 +45,3 @@ class AppState {
       );
   }
 }
-
-export { AppState };

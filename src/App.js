@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
 import { AppStyled } from './AppStyled';
-import { ImageProcessor } from './services/ImageProcessor';
+import { ImageProcessor } from './services';
 import { AppState } from './AppState';
-import { Preview } from './components/Preview';
-import { Upload } from './components/Upload';
-import { Download } from './components/Download';
+import { Preview, Upload, Download } from './components';
 
 const imageProcessor = new ImageProcessor();
 const appState = new AppState(imageProcessor);
