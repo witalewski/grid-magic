@@ -1,8 +1,7 @@
 import { TILE_SIZE, GAP_SIZE } from '../../global/constants';
 import { ImageProcessor } from './ImageProcessor';
-import input from '../../fixtures/input.jpg';
 
-describe.only('ImageProcessor', () => {
+describe('ImageProcessor', () => {
   let imageProcessor;
 
   beforeEach(() => {

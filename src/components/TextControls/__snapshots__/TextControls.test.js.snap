@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextControls displays text controls 1`] = `
+<div>
+  Text: 
+  <input
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;
