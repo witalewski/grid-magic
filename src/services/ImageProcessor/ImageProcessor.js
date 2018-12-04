@@ -1,15 +1,17 @@
 import { Promise } from 'rsvp';
+import { createCanvas } from 'canvas';
 
 export class ImageProcessor {
-  createCanvas = (width, height) => {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    return canvas;
-  };
+  // createCanvas = (width, height) => {
+  //   const canvas = document.createElement('canvas');
+  //   canvas.width = width;
+  //   canvas.height = height;
+  //   return canvas;
+  // };
 
   getPlaceholderCanvas = (width, height, tileSize, gapSize) => {
-    const canvas = this.createCanvas(width, height);
+    // const canvas = this.createCanvas(width, height);
+    const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
     context.fillStyle = 'lightgray';
     context.fillRect(0, 0, width, height);
@@ -29,7 +31,8 @@ export class ImageProcessor {
 
         img.onload = ({ target }) => {
           const img = target;
-          const canvas = this.createCanvas(width, height);
+          // const canvas = this.createCanvas(width, height);
+          const canvas = createCanvas(width, height);
           const context = canvas.getContext('2d');
           context.fillStyle = 'white';
           context.fillRect(0, 0, width, height);
@@ -51,8 +54,8 @@ export class ImageProcessor {
             yOffset = 0;
           }
           context.drawImage(img, xOffset, yOffset, targetWidth, targetHeight);
-          context.fillRect(tileSize + gapSize, 0, gapSize, tileSize);
-          context.fillRect(tileSize * 2 + gapSize * 2, 0, gapSize, tileSize);
+          context.fillRect(tileSize, 0, gapSize, tileSize);
+          context.fillRect(tileSize * 2 + gapSize, 0, gapSize, tileSize);
 
           resolve(canvas);
         };
@@ -65,7 +68,8 @@ export class ImageProcessor {
   addTextToCanvas = (
     (canvas, text) => {
       const { width, height } = canvas;
-      const newCanvas = this.createCanvas(width, height);
+      // const newCanvas = this.createCanvas(width, height);
+      const newCanvas = createCanvas(width, height);
       const context = newCanvas.getContext('2d');
       context.drawImage(canvas, 0, 0, width, height);
       context.fillStyle = 'white';
@@ -86,8 +90,9 @@ export class ImageProcessor {
   downloadImages = (sourceCanvas, tileSize, gapSize) => {
     const imageBlobs = [];
     let imagesLeftToProcess = 3;
-    [0, tileSize + gapSize * 2, tileSize * 2 + gapSize * 3].forEach((x, i) => {
-      const exportCanvas = this.createCanvas(tileSize, tileSize);
+    [0, tileSize + gapSize, tileSize * 2 + gapSize * 2].forEach((x, i) => {
+      // const exportCanvas = this.createCanvas(tileSize, tileSize);
+      const exportCanvas = createCanvas(tileSize, tileSize);
       const exportContext = exportCanvas.getContext('2d');
       exportContext.drawImage(
         sourceCanvas,

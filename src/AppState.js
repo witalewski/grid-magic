@@ -1,6 +1,5 @@
 import { observable, action, computed } from 'mobx';
-export const TILE_SIZE = 1080;
-export const GAP_SIZE = 10;
+import {TILE_SIZE, GAP_SIZE } from './global/constants';
 
 export class AppState {
   constructor(imageProcessor) {
