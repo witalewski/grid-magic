@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/grid-magic/precache-manifest.6e4e27fc935ac1938f06e637d224f8c5.js"
+  "/grid-magic/precache-manifest.a59ab5fa3a369238b2fb1af44ec5e039.js"
 );
 
 workbox.clientsClaim();
