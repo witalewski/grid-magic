@@ -2,18 +2,11 @@ import { Promise } from 'rsvp';
 import { createCanvas } from 'canvas';
 
 export class ImageProcessor {
-  // createCanvas = (width, height) => {
-  //   const canvas = document.createElement('canvas');
-  //   canvas.width = width;
-  //   canvas.height = height;
-  //   return canvas;
-  // };
 
   getPlaceholderCanvas = (width, height, tileSize, gapSize) => {
-    // const canvas = this.createCanvas(width, height);
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    context.fillStyle = 'lightgray';
+    context.fillStyle = '#E6E7E6';
     context.fillRect(0, 0, width, height);
     context.fillStyle = 'white';
     context.fillRect(tileSize + gapSize, 0, gapSize, tileSize);
@@ -31,7 +24,6 @@ export class ImageProcessor {
 
         img.onload = ({ target }) => {
           const img = target;
-          // const canvas = this.createCanvas(width, height);
           const canvas = createCanvas(width, height);
           const context = canvas.getContext('2d');
           context.fillStyle = 'white';
@@ -68,7 +60,6 @@ export class ImageProcessor {
   addTextToCanvas = (
     (canvas, text) => {
       const { width, height } = canvas;
-      // const newCanvas = this.createCanvas(width, height);
       const newCanvas = createCanvas(width, height);
       const context = newCanvas.getContext('2d');
       context.drawImage(canvas, 0, 0, width, height);
@@ -91,7 +82,6 @@ export class ImageProcessor {
     const imageBlobs = [];
     let imagesLeftToProcess = 3;
     [0, tileSize + gapSize, tileSize * 2 + gapSize * 2].forEach((x, i) => {
-      // const exportCanvas = this.createCanvas(tileSize, tileSize);
       const exportCanvas = createCanvas(tileSize, tileSize);
       const exportContext = exportCanvas.getContext('2d');
       exportContext.drawImage(

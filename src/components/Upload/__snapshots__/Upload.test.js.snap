@@ -1,9 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Upload displays upload 1`] = `
-<input
-  className="file-upload"
-  onChange={[Function]}
-  type="file"
-/>
+<ForwardRef(render)>
+  <h2>
+    1. Upload file
+  </h2>
+  <div
+    className="file-upload-content"
+  >
+    <input
+      className="file-upload"
+      onChange={[Function]}
+      type="file"
+    />
+  </div>
+</ForwardRef(render)>
 `;

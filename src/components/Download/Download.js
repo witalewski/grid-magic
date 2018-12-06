@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { observer, inject } from 'mobx-react';
+import styled from '@emotion/styled';
 
+const DownloadStyled = styled.section`
+  margin: 8px;
+
+  .download-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 80px;
+    background: #E6E7E6;
+    border: 1px solid #476a6f;
+  }
+`;
 class Download extends Component {
   static propTypes = {
     downloadImages: func.isRequired,
@@ -9,9 +23,17 @@ class Download extends Component {
 
   render() {
     return (
-      <button className="download-button" onClick={this.props.downloadImages}>
-        Download images
-      </button>
+      <DownloadStyled>
+        <h2>3. Download images</h2>
+        <div className="download-content">
+          <button
+            className="download-button"
+            onClick={this.props.downloadImages}
+          >
+            Download
+          </button>
+        </div>
+      </DownloadStyled>
     );
   }
 }

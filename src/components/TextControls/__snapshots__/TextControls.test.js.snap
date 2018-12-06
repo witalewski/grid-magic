@@ -1,12 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextControls displays text controls 1`] = `
-<div>
-  Text: 
-  <input
-    onChange={[Function]}
-    type="text"
-    value=""
-  />
-</div>
+<ForwardRef(render)>
+  <h2>
+    2. Add text
+  </h2>
+  <div
+    className="text-controls-content"
+  >
+    <p>
+      Text:
+    </p>
+    <input
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+</ForwardRef(render)>
 `;

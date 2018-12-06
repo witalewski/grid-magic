@@ -1,10 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Download displays download 1`] = `
-<button
-  className="download-button"
-  onClick={[MockFunction]}
->
-  Download images
-</button>
+<ForwardRef(render)>
+  <h2>
+    3. Download images
+  </h2>
+  <div
+    className="download-content"
+  >
+    <button
+      className="download-button"
+      onClick={[MockFunction]}
+    >
+      Download
+    </button>
+  </div>
+</ForwardRef(render)>
 `;

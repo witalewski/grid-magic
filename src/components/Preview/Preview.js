@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
 import { inject, observer } from 'mobx-react';
+import styled from '@emotion/styled';
+
+const PreviewStyled = styled.img`
+    width: calc(100% - 72px);
+    max-width: 960px;
+
+    margin: 36px 0;
+    padding: 0;
+`;
 
 class Preview extends Component {
   static propTypes = {
@@ -12,9 +21,8 @@ class Preview extends Component {
 
   render() {
     return (
-      <img
+      <PreviewStyled
         alt="Preview"
-        className="preview-image"
         src={
           this.props.previewCanvas &&
           this.props.previewCanvas.toDataURL('image/png')
