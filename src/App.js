@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import styled from '@emotion/styled';
@@ -34,28 +34,24 @@ export const AppStyled = styled.div`
 const imageProcessor = new ImageProcessor();
 const appState = new AppState(imageProcessor);
 
-class App extends Component {
-  render() {
-    return (
-      <Provider appState={appState}>
-        <AppStyled className="App">
-          <h1 className="title">
-            <span role="img" aria-label="Wizard emoji">
-              🧙🏻‍♀️
-            </span>{' '}
-            Layout your image on 3x1 grid for Instagram
-          </h1>
-          <Preview />
-          <div className="controls">
-            <Upload />
-            <TextControls />
-            <Download />
-          </div>
-          <DevTools />
-        </AppStyled>
-      </Provider>
-    );
-  }
-}
+export const App = () => (
+  <Provider appState={appState}>
+    <AppStyled className="App">
+      <h1 className="title">
+        <span role="img" aria-label="Wizard emoji">
+          🧙🏻‍♀️
+        </span>{' '}
+        Layout your image on 3x1 grid for Instagram
+      </h1>
+      <Preview />
+      <div className="controls">
+        <Upload />
+        <TextControls />
+        <Download />
+      </div>
+      <DevTools />
+    </AppStyled>
+  </Provider>
+);
 
 export default App;

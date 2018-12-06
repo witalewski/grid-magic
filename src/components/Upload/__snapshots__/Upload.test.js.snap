@@ -2,7 +2,9 @@
 
 exports[`Upload displays upload 1`] = `
 <ForwardRef(render)>
-  <h2>
+  <h2
+    className="section-heading"
+  >
     1. Upload file
   </h2>
   <div

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { func, string } from 'prop-types';
-import { throttle } from 'lodash';
+
 import styled from '@emotion/styled';
 
 const TextControlsStyled = styled.section`
@@ -26,45 +26,30 @@ const TextControlsStyled = styled.section`
   }
 `;
 
-export class TextControls extends Component {
-  static propTypes = {
-    overlayText: string,
-    setOverlayText: func.isRequired,
-  };
-  static defaultProps = {
-    overlayText: '',
+export const TextControls = ({ overlayText, setOverlayText }) => {
+
+  const onChange = ({ target: { value } }) => {
+    setOverlayText(value);
   };
 
-  static initialState = {
-    overlayText: '',
-  };
+  return (
+    <TextControlsStyled>
+      <h2 className="section-heading">2. Add text</h2>
+      <div className="text-controls-content">
+        <p>Text:</p>
+        <input type="text" value={overlayText} onChange={onChange} />
+      </div>
+    </TextControlsStyled>
+  );
+};
 
-  constructor(props) {
-    super(props);
-    this.setOverlayText = throttle(this.props.setOverlayText, 500);
-    this.state = { overlayText: '' };
-  }
-
-  onChange = ({ target: { value } }) => {
-    this.setState({ overlayText: value });
-    this.setOverlayText(value);
-  };
-  render() {
-    return (
-      <TextControlsStyled>
-        <h2 className="section-heading">2. Add text</h2>
-        <div className="text-controls-content">
-          <p>Text:</p>
-          <input
-            type="text"
-            value={this.state.overlayText}
-            onChange={this.onChange}
-          />
-        </div>
-      </TextControlsStyled>
-    );
-  }
-}
+TextControls.propTypes = {
+  overlayText: string,
+  setOverlayText: func.isRequired,
+};
+TextControls.defaultProps = {
+  overlayText: '',
+};
 
 export default inject(({ appState }) => ({
   overlayText: appState.overlayText,

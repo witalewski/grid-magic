@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { func } from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import styled from '@emotion/styled';
@@ -21,27 +21,22 @@ const UploadStyled = styled.section`
   }
 `;
 
-export class Upload extends Component {
-  static propTypes = {
-    addFile: func.isRequired,
-  };
+export const Upload = ({ addFile }) => (
+  <UploadStyled>
+    <h2 className="section-heading">1. Upload file</h2>
+    <div className="file-upload-content">
+      <input
+        className="file-upload"
+        type="file"
+        onChange={event => addFile(event.target.files[0])}
+      />
+    </div>
+  </UploadStyled>
+);
 
-  render() {
-    const { addFile } = this.props;
-    return (
-      <UploadStyled>
-        <h2 className="section-heading">1. Upload file</h2>
-        <div className="file-upload-content">
-          <input
-            className="file-upload"
-            type="file"
-            onChange={event => addFile(event.target.files[0])}
-          />
-        </div>
-      </UploadStyled>
-    );
-  }
-}
+Upload.propTypes = {
+  addFile: func.isRequired,
+};
 
 export default inject(({ appState }) => ({
   addFile: appState.addFile,

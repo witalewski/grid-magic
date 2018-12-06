@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { func } from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import styled from '@emotion/styled';
@@ -12,7 +12,7 @@ const DownloadStyled = styled.section`
     align-items: center;
     width: 250px;
     height: 80px;
-    background: #E6E7E6;
+    background: #e6e7e6;
     border: 1px solid #476a6f;
   }
 
@@ -20,29 +20,21 @@ const DownloadStyled = styled.section`
     font-weight: normal;
   }
 `;
-class Download extends Component {
-  static propTypes = {
-    downloadImages: func.isRequired,
-  };
+export const Download = ({ downloadImages }) => (
+  <DownloadStyled>
+    <h2 className="section-heading">3. Download images</h2>
+    <div className="download-content">
+      <button className="download-button" onClick={downloadImages}>
+        Download
+      </button>
+    </div>
+  </DownloadStyled>
+);
 
-  render() {
-    return (
-      <DownloadStyled>
-        <h2 className="section-heading">3. Download images</h2>
-        <div className="download-content">
-          <button
-            className="download-button"
-            onClick={this.props.downloadImages}
-          >
-            Download
-          </button>
-        </div>
-      </DownloadStyled>
-    );
-  }
-}
+Download.propTypes = {
+  downloadImages: func.isRequired,
+};
 
-export { Download };
 export default inject(({ appState }) => ({
   downloadImages: appState.downloadImages,
 }))(observer(Download));
