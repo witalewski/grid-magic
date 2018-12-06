@@ -21,7 +21,7 @@ export const AppStyled = styled.div`
 
   font-family: 'Lato', sans-serif;
 
-  h1 {
+  .title {
     font-weight: normal;
   }
 
@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <Provider appState={appState}>
         <AppStyled className="App">
-          <h1>
+          <h1 className="title">
             <span role="img" aria-label="Wizard emoji">
               🧙🏻‍♀️
             </span>{' '}

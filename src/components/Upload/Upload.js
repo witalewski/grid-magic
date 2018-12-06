@@ -4,8 +4,7 @@ import { observer, inject } from 'mobx-react';
 import styled from '@emotion/styled';
 
 const UploadStyled = styled.section`
-
-    margin: 8px;
+  margin: 8px;
 
   .file-upload-content {
     display: flex;
@@ -13,8 +12,12 @@ const UploadStyled = styled.section`
     align-items: center;
     width: 250px;
     height: 80px;
-    background: #E6E7E6;
-    border: 1px solid #476A6F;
+    background: #e6e7e6;
+    border: 1px solid #476a6f;
+  }
+
+  .section-heading {
+    font-weight: normal;
   }
 `;
 
@@ -27,7 +30,7 @@ export class Upload extends Component {
     const { addFile } = this.props;
     return (
       <UploadStyled>
-        <h2>1. Upload file</h2>
+        <h2 className="section-heading">1. Upload file</h2>
         <div className="file-upload-content">
           <input
             className="file-upload"

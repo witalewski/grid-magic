@@ -15,6 +15,10 @@ const DownloadStyled = styled.section`
     background: #E6E7E6;
     border: 1px solid #476a6f;
   }
+
+  .section-heading {
+    font-weight: normal;
+  }
 `;
 class Download extends Component {
   static propTypes = {
@@ -24,7 +28,7 @@ class Download extends Component {
   render() {
     return (
       <DownloadStyled>
-        <h2>3. Download images</h2>
+        <h2 className="section-heading">3. Download images</h2>
         <div className="download-content">
           <button
             className="download-button"

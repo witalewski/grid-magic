@@ -13,12 +13,16 @@ const TextControlsStyled = styled.section`
     align-items: center;
     width: 250px;
     height: 80px;
-    background: #E6E7E6;
+    background: #e6e7e6;
     border: 1px solid #476a6f;
   }
 
   .text-controls-content > * {
     margin: 8px;
+  }
+
+  .section-heading {
+    font-weight: normal;
   }
 `;
 
@@ -48,7 +52,7 @@ export class TextControls extends Component {
   render() {
     return (
       <TextControlsStyled>
-        <h2>2. Add text</h2>
+        <h2 className="section-heading">2. Add text</h2>
         <div className="text-controls-content">
           <p>Text:</p>
           <input
