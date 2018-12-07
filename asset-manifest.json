@@ -1,11 +1,11 @@
 {
-  "main.js": "/grid-magic/static/js/main.7b700d45.chunk.js",
-  "main.js.map": "/grid-magic/static/js/main.7b700d45.chunk.js.map",
-  "static/js/1.59e98490.chunk.js": "/grid-magic/static/js/1.59e98490.chunk.js",
-  "static/js/1.59e98490.chunk.js.map": "/grid-magic/static/js/1.59e98490.chunk.js.map",
+  "main.js": "/grid-magic/static/js/main.af64177c.chunk.js",
+  "main.js.map": "/grid-magic/static/js/main.af64177c.chunk.js.map",
+  "static/js/1.8c52d970.chunk.js": "/grid-magic/static/js/1.8c52d970.chunk.js",
+  "static/js/1.8c52d970.chunk.js.map": "/grid-magic/static/js/1.8c52d970.chunk.js.map",
   "runtime~main.js": "/grid-magic/static/js/runtime~main.66d2095c.js",
   "runtime~main.js.map": "/grid-magic/static/js/runtime~main.66d2095c.js.map",
   "index.html": "/grid-magic/index.html",
-  "precache-manifest.e4d91f61fcd548e1aab64a8117ede400.js": "/grid-magic/precache-manifest.e4d91f61fcd548e1aab64a8117ede400.js",
+  "precache-manifest.ae59a3141d18787f7af04918f3f211a4.js": "/grid-magic/precache-manifest.ae59a3141d18787f7af04918f3f211a4.js",
   "service-worker.js": "/grid-magic/service-worker.js"
 }
