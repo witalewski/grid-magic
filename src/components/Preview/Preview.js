@@ -3,22 +3,23 @@ import { object } from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import styled from '@emotion/styled';
 
-const PreviewStyled = styled.img`
-  width: calc(100% - 72px);
-  max-width: 960px;
+const PreviewStyled = styled.div`
+height: 100%;
+  .preview-image {
+    max-width: 100%;
+  }
+`
 
-  margin: 36px 0;
-  padding: 0;
-`;
-
-export const Preview = ({previewCanvas}) => (
-  <PreviewStyled
-    alt="Preview"
-    src={
-      previewCanvas &&
-      previewCanvas.toDataURL('image/png')
-    }
-  />
+export const Preview = ({ previewCanvas }) => (
+  <PreviewStyled className="row align-items-center">
+    <div className="col-12">
+      <img
+        alt="Preview"
+        className="preview-image"
+        src={previewCanvas && previewCanvas.toDataURL('image/png')}
+      />
+    </div>
+  </PreviewStyled>
 );
 
 Preview.propTypes = {
