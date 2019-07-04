@@ -61,14 +61,17 @@
     "webpack": "4.19.1",
     "webpack-dev-server": "3.1.11",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.3"
+    "workbox-webpack-plugin": "3.6.3",
+    "snyk": "^1.189.0"
   },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --coverage --coverageReporters=text-lcov | coveralls"
+    "test": "node scripts/test.js --coverage --coverageReporters=text-lcov | coveralls",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -142,5 +145,6 @@
     "jest-canvas-mock": "^1.1.0",
     "jest-static-stubs": "^0.0.1",
     "mobx-react-devtools": "^6.0.3"
-  }
+  },
+  "snyk": true
 }
